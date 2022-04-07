@@ -1,7 +1,8 @@
 import { getToken, setToken, removeToken } from '@/utils/auth'
-import { login } from '@/api/user'
+import { login, getUserInfo, getUserDetailById } from '@/api/user'
 const state = {
-  token: getToken()
+  token: getToken(),
+  userInfo: {} // 用户信息
 }
 const mutations = {
   // 设置token
@@ -13,6 +14,14 @@ const mutations = {
   removeToken(state) {
     state.token = null
     removeToken()
+  },
+  // 设置用户信息
+  setUserInfo(state, userInfo) {
+    state.userInfo = { ...userInfo }
+  },
+  // 移除用户信息
+  removeUserInfo(state) {
+    state.userInfo = {}
   }
 }
 const actions = {
@@ -24,6 +33,14 @@ const actions = {
     // 现在有用户token
     // actions 修改state 必须通过mutations
     context.commit('setToken', result)
+  },
+  async getUserInfo(context) {
+    const result = await getUserInfo()
+    // 获取用户详情
+    const baseInfo = await getUserDetailById(result.userId)
+    const baseResult = { ...result, ...baseInfo }
+    context.commit('setUserInfo', baseResult)
+    return result
   }
 }
 export default {
