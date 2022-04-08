@@ -37,7 +37,7 @@ service.interceptors.response.use(
     if (error.response && error.response.data && error.response.data.code === 10002){
       store.dispatch('user/logout')
       router.push('/login')
-    }else {
+    } else {
       Message.error(error)
     }
     return Promise.reject(error)
