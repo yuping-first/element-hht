@@ -12,7 +12,7 @@ const service = axios.create({
 // 请求拦截器(参数固定 config和 error)  必须return config
 service.interceptors.request.use(config => {
   if (store.getters.token) {
-    if (IsCheckTimeOut) {
+    if (IsCheckTimeOut()) {
       store.dispatch('user/logout')
       router.push('/login')
       return Promise.reject(new Error('token超时了'))
