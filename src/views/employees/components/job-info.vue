@@ -197,7 +197,7 @@ export default {
       }
     }
   },
-   created() {
+  created() {
     this.getJobDetail()
     this.getEmployeeSimple()
   },

@@ -21,10 +21,12 @@
 </template>
 
 <script>
+  // 2AKIDYw4vVosgDTTCeoiLiocBSSBdpthFWWEf2
+  // 2C8nAG5ewyjDQM1PWMvDEyRdXAWbQzHI22
 import COS from 'cos-js-sdk-v5'
 const cos = new COS ({
-  SecretId: 'AKIDYw4vVosgDTTCeoiLiocBSSBdpthFWWEf', // 身份识别 ID
-  SecretKey: 'C8nAG5ewyjDQM1PWMvDEyRdXAWbQzHI2' // 身份密钥
+  SecretId: '', // 身份识别 ID
+  SecretKey: '' // 身份密钥
 })
 export default {
   data() {
