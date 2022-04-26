@@ -52,7 +52,6 @@ export default {
     },
     // 编辑
     editDepts(node) {
-      debugger
       this.showDialog = true
       this.node = node
       console.log(this.$refs.addDept)

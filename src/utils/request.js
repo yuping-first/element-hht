@@ -30,7 +30,7 @@ service.interceptors.response.use(
     if (success) {
       return data
     } else {
-      Message.error(message)
+      Message.error({ message: message })
       return Promise.reject(new Error(message))
     }
   }, error => {
@@ -38,7 +38,7 @@ service.interceptors.response.use(
       store.dispatch('user/logout')
       router.push('/login')
     } else {
-      Message.error(error)
+      Message.error({ message: error })
     }
     return Promise.reject(error)
   }

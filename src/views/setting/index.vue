@@ -9,7 +9,7 @@
               新增角色
             </el-button>
           </el-row>
-          <el-table border="" :data="list">
+          <el-table border="" :data="list" v-loading="loading">
             <el-table-column header-align="left" align="center" type="index" label="序号" width="120">
             </el-table-column>
             <el-table-column header-align="left" align="center" prop="name" label="角色名称" width="240">
@@ -82,6 +82,7 @@ import { mapGetters } from 'vuex'
 export default {
   data() {
     return {
+      loading: false,
       list:[], // 角色数据
       page: {
         page: 1,
@@ -104,9 +105,11 @@ export default {
   methods: {
     // 角色列表
     async getRoleList() {
+      this.loading = true
       const { total, rows } = await getRoleList(this.page)
       this.list = rows
       this.page.total = total
+      this.loading = false
     },
     change(newchange) {
       this.page.page = newchange

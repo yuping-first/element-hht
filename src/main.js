@@ -14,12 +14,23 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+// 组册自己封装的组建
+import Component from '@/components'
+Vue.use(Component) // 注册自己的插件
 import * as directives from '@/directives'
 Object.keys(directives).forEach(key => {
   // 注册自定义指令
   Vue.directive(key, directives[key])
 })
-
+// 过滤器
+import * as filters from '@/filters'
+Object.keys(filters).forEach(key => {
+  // 注册自定义指令
+  Vue.filter(key, filters[key])
+})
+// 注册打印组建
+import Print from 'vue-print-nb'
+Vue.use(Print)
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api
