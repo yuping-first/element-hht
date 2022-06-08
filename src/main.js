@@ -31,6 +31,9 @@ Object.keys(filters).forEach(key => {
 // 注册打印组建
 import Print from 'vue-print-nb'
 Vue.use(Print)
+// 混合注入
+import checkPermission from '@/mixin/checkPermission'
+Vue.mixin(checkPermission)
 /**
  * If you don't want to use mock-server
  * you want to use MockJs for mock api

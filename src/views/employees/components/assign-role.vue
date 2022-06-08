@@ -1,11 +1,62 @@
 <template>
-    $END$
+  <el-dialog title="分配角色" :visible="showRoleDialog" @close="btnCancel">
+    <!-- el-checkbox-group选中的是 当前用户所拥有的角色  需要绑定 当前用户拥有的角色-->
+    <el-checkbox-group v-model="roleIds">
+      <!-- 选项 -->
+      <el-checkbox v-for="item in list" :key="item.id" :label="item.id">{{item.name}}</el-checkbox>
+    </el-checkbox-group>
+    <el-row slot="footer" type="flex" justify="center">
+      <el-col :span="6">
+        <el-button type="primary" size="small" @click="btnOk">确定</el-button>
+        <el-button size="small" @click="btnCancel">取消</el-button>
+      </el-col>
+    </el-row>
+  </el-dialog>
 </template>
 
 <script>
-  export default {
-    name: "assign-role"
+import { getRoleList } from '@/api/setting'
+import { getUserDetailById } from '@/api/user'
+import { assignRoles } from '@/api/employees'
+export default {
+  props: {
+    showRoleDialog: {
+      type: Boolean,
+      default: false
+    },
+    useId: {
+      type: String,
+      default: null
+    }
+  },
+  data() {
+    return {
+      list: [],
+      roleIds: []
+    }
+  },
+  created() {
+    this.getRoleList()
+  },
+  methods: {
+    btnCancel() {
+      this.roleIds=[]
+      this.$emit('update:showRoleDialog', false)
+    },
+    async btnOk() {
+      await assignRoles({ id: this.useId, roleIds: this.roleIds })
+      this.$emit('update:showRoleDialog', false)
+    },
+    async getRoleList() {
+      const { rows } = await getRoleList({ page: 1, pagesize: 20 })
+      this.list = rows
+    },
+    async getUserDetailById(id) {
+      const { roleIds } = await getUserDetailById(id)
+      this.roleIds = roleIds
+    }
   }
+}
 </script>
 
 <style scoped>
