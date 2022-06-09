@@ -8,6 +8,7 @@ import permissionRouter from '@/router/permission'
 import salarysRouter from '@/router/salarys'
 import settingRouter from '@/router/setting'
 import socialRouter from '@/router/social'
+import userRouter from '@/router/user'
 
 Vue.use(Router)
 
@@ -72,7 +73,8 @@ export const constantRoutes = [
     }]
   },
   // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  { path: '*', redirect: '/404', hidden: true },
+  userRouter
 ]
 // 动态路由
 export const asyncRoutes = [
