@@ -9,6 +9,9 @@
   </div>
 
     <div class="right-menu">
+      <lang class="right-menu-item" />
+      <ScreenFull class="right-menu-item"></ScreenFull>
+      <theme-picker class="right-menu-item" style="padding-top: 11px" />
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <img v-imageerror="defaultImg" :src="staffPhoto" class="user-avatar">
@@ -114,6 +117,7 @@ export default {
     float: right;
     height: 100%;
     line-height: 50px;
+    display: flex;
     .user-avatar {
           cursor: pointer;
           width: 30px;
