@@ -69,6 +69,7 @@ export default {
   methods: {
     isActive(route) {
       return route.path === this.$route.path
+      console.log( this.$route.path );
     },
     isAffix(tag) {
       return tag.meta && tag.meta.affix
