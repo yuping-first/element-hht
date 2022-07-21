@@ -80,6 +80,8 @@ export default {
       const before = this.beforeUpload(rawFile)
       if (before) {
         this.readerData(rawFile)
+      } else {
+        console.log('hahah 测试一下')
       }
     },
     readerData(rawFile) {
